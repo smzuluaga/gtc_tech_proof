@@ -1,0 +1,57 @@
+CREATE TABLE estudiante (
+    id INT AUTO_INCREMENT,
+    tipo_documento_identidad VARCHAR(50),
+    documento_identidad VARCHAR(50),
+    nombres VARCHAR(150),
+    apellidos VARCHAR(150),
+    fecha_nacimiento VARCHAR(50),
+    grado_matriculado INT,
+    ciudad_residencia VARCHAR(50),
+    direccion VARCHAR(50),
+    email VARCHAR(50),
+    telefojo_fijo VARCHAR(50),
+    celular VARCHAR(50),
+    nombre_completo_acudiente VARCHAR(50),
+    PRIMARY KEY(id),
+    FOREIGN KEY(grado_matriculado) REFERENCES school_years(id)
+ );
+
+
+
+CREATE TABLE docente (
+    id INT AUTO_INCREMENT,
+    tipo_documento_identidad VARCHAR(50),
+    documento_identidad VARCHAR(50),
+    nombres VARCHAR(150),
+    apellidos VARCHAR(150),
+    fecha_nacimiento VARCHAR(50),
+    email VARCHAR(50),
+    telefojo_fijo VARCHAR(50),
+    celular VARCHAR(50),
+    asignaturas_dictadas INT,
+    ultimo_grado_escolaridad VARCHAR(50),
+    grado_responsable VARCHAR(50),
+    PRIMARY KEY(id),
+    FOREIGN KEY(asignaturas_dictadas) REFERENCES asignaturas(id)
+ );
+
+
+CREATE TABLE asignaturas (
+    id INT AUTO_INCREMENT,
+    nombre VARCHAR(50),
+    school_year INT,
+    docente INT,
+    estudiante INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(estudiante) REFERENCES estudiantes(id)
+ );
+
+
+CREATE TABLE school_years (
+    id INT AUTO_INCREMENT,
+    school_year INT,
+    director INT,
+    docente INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(docente) REFERENCES docentes(id)
+ );
